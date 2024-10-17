@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sender</title>
+    <script>
+
+        function popup() {
+            var url = document.getElementById("url").value;
+            window.test = open(url, "pop", "width=850,height=750,resizable=1");
+            setTimeout(msg, 1000)
+        }
+        function msg() {
+            window.test.postMessage(JSON.stringify({
+                "readyToPlay": true,
+                "name": document.getElementById("name").value,
+                "message": document.getElementById("message").value
+            }), "*");
+        }
+    </script>
+</head>
+<body>
+<h1>Send your Message:</h1>
+<div>
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name">
+</div>
+<div>
+    <label for="message">Enter your message:</label>
+    <input type="text" id="message">
+</div>
+<div>
+    <label for="url">Enter your url such as ([scheme]://[ip]:[port]/):</label>
+    <input type="url" id="url">
+</div>
+<input type="button" value="Send" onclick="popup()">
+</body>
+</html>
